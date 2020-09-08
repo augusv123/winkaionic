@@ -7,13 +7,13 @@ export const environment = {
 };
 
 export const firebaseConfig = {
-  apiKey: '<your-api-key>',
-  authDomain: '<your-project-authdomain>',
-  databaseURL: '<your-database-URL>',
-  projectId: '<your-project-id>',
-  storageBucket: '<your-storage-bucket>',
-  messagingSenderId: '<your-messaging-sender-id>',
-  appId: "<your-app-id>",
+  apiKey: "AIzaSyDGibxXoPeI8SrQcWbKOdQo6PB9Eya3904",
+  authDomain: "winkaionic.firebaseapp.com",
+  databaseURL: "https://winkaionic.firebaseio.com",
+  projectId: "winkaionic",
+  storageBucket: "winkaionic.appspot.com",
+  messagingSenderId: "825596991227",
+  appId: "1:825596991227:web:425d48f8816c059ecc425e",
 };
 
 /*
