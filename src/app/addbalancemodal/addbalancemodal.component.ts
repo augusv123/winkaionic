@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { BalanceService } from '../services/balance.service';
 
 @Component({
@@ -9,12 +9,17 @@ import { BalanceService } from '../services/balance.service';
 })
 export class AddbalancemodalComponent implements OnInit {
   amount
-  constructor(public modalCtrl: ModalController, private balanceSerive: BalanceService) { }
+  balance
+  constructor(public modalCtrl: ModalController, private balanceSerive: BalanceService,private toastController : ToastController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+  }
   add() {
     this.balanceSerive.addBalance(this.amount)
-
+    
+    this.presentToast("Dinero ingresado con exito")
     this.modalCtrl.dismiss({
       'amount': this.amount
     });
@@ -25,6 +30,14 @@ export class AddbalancemodalComponent implements OnInit {
     this.modalCtrl.dismiss({
       'dismissed': true
     });
+  }
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',  
+    });
+    toast.present();
   }
 
 }

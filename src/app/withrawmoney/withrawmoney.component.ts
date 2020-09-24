@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { BalanceService } from '../services/balance.service';
 
 @Component({
@@ -10,19 +10,34 @@ import { BalanceService } from '../services/balance.service';
 export class WithrawmoneyComponent implements OnInit {
   amount
   balance
-  constructor(public modalCtrl: ModalController, private balanceSerive: BalanceService) { }
+  constructor(public modalCtrl: ModalController, private balanceSerive: BalanceService,public toastController: ToastController) { }
 
   ngOnInit() {
 
 
   }
   add() {
-    this.balanceSerive.withraw(this.amount)
-    
+    var check = this.balanceSerive.withraw(this.amount)
+    if(check){
+      this.presentToast("Dinero retirado con exito")
 
-    this.modalCtrl.dismiss({
-      'amount': this.amount
+      this.modalCtrl.dismiss({
+        'amount': this.amount
+      });
+    }
+    else{
+      this.presentToast("Error: El monto ingresado es mayor al dinero en cuenta")
+    }
+
+   
+  }
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',  
     });
+    toast.present();
   }
   dismiss() {
     // using the injected ModalController this page

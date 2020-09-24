@@ -8,7 +8,18 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  
+  {
+    path: 'chats',
+    loadChildren: () => import('./chats/chats.module').then( m => m.ChatsPageModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./list-contact/list-contact.module').then( m => m.ListContactPageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./list-chats/list-chats.module').then( m => m.ListChatsPageModule)
+  },
 ];
 
 @NgModule({
