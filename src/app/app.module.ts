@@ -14,14 +14,18 @@ import { AngularFirestoreModule } from "@angular/fire/firestore"; //Modulo Fires
 import { AngularFireAuthModule } from "@angular/fire/auth";  //Modulo de authenticacion
 import { AngularFireModule } from "@angular/fire";            //Modulo para inicializar y que todo funcione bien vergas
 import { firebaseConfig} from "../environments/environment";     // aqui se encuentra una variable de configuracion para inicializar firebase
+import { AddbalancemodalComponent } from './addbalancemodal/addbalancemodal.component';
+import { FormsModule } from '@angular/forms';
+import { WithrawmoneyComponent } from './withrawmoney/withrawmoney.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,AddbalancemodalComponent,WithrawmoneyComponent],
+  entryComponents: [AddbalancemodalComponent, WithrawmoneyComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

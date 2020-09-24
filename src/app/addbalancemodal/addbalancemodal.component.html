@@ -1,0 +1,18 @@
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Valor:</ion-label>
+        <ion-input type="number" [(ngModel)]="amount" value="0"></ion-input>
+    
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  
+  <ion-button type="submit" (click)="add()" expand="block">Aceptar</ion-button>
+
+  <ion-button type="submit" (click)="dismiss()" expand="block">cerrar</ion-button>
+
+</ion-content>

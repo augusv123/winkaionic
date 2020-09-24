@@ -2,8 +2,10 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/firestore";
+import { AngularFireDatabase } from "@angular/fire/database";
 import { auth } from 'firebase';
 import { User } from '../models/User';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class AuthService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
-    public ngZone: NgZone 
+    public ngZone: NgZone,
+   
   ) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
@@ -90,6 +93,9 @@ export class AuthService {
   // Store user in localStorage
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${user.uid}`);
+    console.log(user)
+    // const userRef: AngularFirestoreDocument<any> = this.afDatabase.ref(`users/${user.uid}`);
+    
     const userData: User = {
       uid: user.uid,
       email: user.email,
@@ -97,6 +103,20 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
+  var ref =  firebase.database().ref(`users/${user.uid}`)
+   ref.on('value', function(snapshot) {
+     if(snapshot.val() == null){
+      var key =  firebase.database().ref(`users/${user.uid}`).set(userData)
+
+     }
+      
+});
+
+  //  firebase.database().ref(`users/${user.uid}/${key}`).update(
+  //    {
+  //      ballance: 101 
+  //    }
+  //  )
     return userRef.set(userData, {
       merge: true
     })
@@ -108,5 +128,10 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     })
+  }
+
+  getUserInfo(){
+     return this.afStore.collection('users').valueChanges() 
+
   }
 }

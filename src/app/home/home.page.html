@@ -2,7 +2,7 @@
 
 <ion-header>
 
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     
 
     <ion-title>
@@ -13,10 +13,60 @@
       <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
 
     </ion-buttons>
-  </ion-toolbar>
+    <ion-avatar>
+      <img src="{{photoUrl}}">
+    </ion-avatar>
+  </ion-toolbar> -->
+  
+<ion-toolbar color="primary">
+  <ion-buttons slot="secondary">
+      <!-- <ion-icon slot="icon-only" name="person-circle"></ion-icon> -->
+      <ion-avatar>
+        <img  style="padding: 10px;" src="{{photoUrl}}">
+      </ion-avatar>
+    <ion-button>
+
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <!-- <ion-button color="danger">
+      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+    </ion-button> -->
+    <ion-buttons>
+      <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
+
+    </ion-buttons>
+  </ion-buttons>
+  <ion-title>Winka</ion-title>
+</ion-toolbar>
 
 </ion-header>
 
 <ion-content class="ion-padding">
-<p>Error firebase chat</p>
+
+ 
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Mi cuenta</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="card-outline"></ion-icon>
+        <ion-label>Tarjetas</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        <ion-label>Chats</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
